@@ -41,3 +41,4 @@ luac.out
 
 luafilesystem-*
 .luacheckcache
+!*.rockspec
