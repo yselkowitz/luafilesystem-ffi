@@ -771,6 +771,32 @@ if OS == 'Linux' then
         ]])
         stat_syscall_num = 106
         lstat_syscall_num = 107
+    elseif ARCH == 'arm64' then
+        ffi.cdef([[
+            typedef struct {
+                unsigned long   st_dev;
+                unsigned long   st_ino;
+                unsigned int    st_mode;
+                unsigned int    st_nlink;
+                unsigned int    st_uid;
+                unsigned int    st_gid;
+                unsigned long   st_rdev;
+                unsigned long   __pad1;
+                long            st_size;
+                int             st_blksize;
+                int             __pad2;
+                long            st_blocks;
+                long            st_atime;
+                long            st_atime_nsec;
+                long            st_mtime;
+                long            st_mtime_nsec;
+                long            st_ctime;
+                long            st_ctime_nsec;
+                int             __unused[2];
+            } stat;
+        ]])
+        stat_syscall_num = 1049
+        lstat_syscall_num = 1050
     elseif ARCH == 'arm' then
         if IS_64_BIT then
             ffi.cdef([[
